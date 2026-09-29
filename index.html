@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Assignments</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .tasks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .task {
+            background: white;
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            transition: 0.2s ease;
+        }
+
+        .task:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .task h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .task p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .task a {
+            display: inline-block;
+            text-decoration: none;
+            background: #222;
+            color: white;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .task a:hover {
+            background: #444;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #888;
+            font-size: 13px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Web Assignments</h1>
+        </div>
+
+        <div class="tasks">
+
+            <div class="task">
+                <h2>Tugas 01</h2>
+                <p>HTML Dasar</p>
+                <a href="./tugas-01/">Open →</a>
+            </div>
+
+            <div class="task">
+                <h2>Tugas 02</h2>
+                <p>CSS & Layout</p>
+                <a href="./tugas-02/">Open →</a>
+            </div>
+
+            <div class="task">
+                <h2>Tugas 03</h2>
+                <p>JavaScript DOM</p>
+                <a href="./tugas-03/">Open →</a>
+            </div>
+
+            <div class="task">
+                <h2>Tugas 04</h2>
+                <p>Fetch API</p>
+                <a href="./tugas-04/">Open →</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

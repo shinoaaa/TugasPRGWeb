@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengubah Warna Latar Belakang</title>
+    <style>
+        body {
+            transition: background-color 0.5s ease;
+            text-align: center;
+            padding-top: 50px;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pengubah Warna Latar Belakang Secara Acak - T5_077</h1>
+    <button id="tombolWarna">Ubah Warna Latar Belakang</button>
+
+    <script>
+        const tombolWarna = document.getElementById('tombolWarna');
+
+        tombolWarna.addEventListener('click', () => {
+            const hurufAngka = '0123456789ABCDEF';
+            let warnaAcak = '#';
+            for (let i = 0; i < 6; i++) {
+                warnaAcak += hurufAngka[Math.floor(Math.random() * 16)];
+            }
+            
+            document.body.style.backgroundColor = warnaAcak;
+        });
+    </script>
+</body>
+</html>

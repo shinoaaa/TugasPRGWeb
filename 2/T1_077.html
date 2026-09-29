@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Suhu - T1_077</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9; }
+        input, select, button { margin: 10px 0; padding: 10px; width: 100%; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        #hasil { font-weight: bold; margin-top: 15px; text-align: center; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Konversi Suhu</h2>
+        <h4>T1_077 - Raid Fikri Nabil</h4>
+        <label for="suhuInput">Masukkan Suhu:</label>
+        <input type="number" id="suhuInput" placeholder="Contoh: 100" required>
+        
+        <label for="dariSuhu">Dari:</label>
+        <select id="dariSuhu">
+            <option value="Celsius">Celsius</option>
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Reamur">Reamur</option>
+        </select>
+        
+        <label for="keSuhu">Ke:</label>
+        <select id="keSuhu">
+            <option value="Fahrenheit">Fahrenheit</option>
+            <option value="Celsius">Celsius</option>
+            <option value="Reamur">Reamur</option>
+        </select>
+        
+        <button onclick="konversiSuhu()">Konversi</button>
+        
+        <div id="hasil"></div>
+    </div>
+
+    <script>
+        function konversiSuhu() {
+            const inputVal = document.getElementById('suhuInput').value;
+            if (inputVal === '') {
+                alert("Masukkan nilai suhu terlebih dahulu!");
+                return;
+            }
+            
+            const suhu = parseFloat(inputVal);
+            const dari = document.getElementById('dariSuhu').value;
+            const ke = document.getElementById('keSuhu').value;
+            let hasil = 0;
+            
+            if (dari === ke) {
+                hasil = suhu;
+            } else if (dari === 'Celsius') {
+                if (ke === 'Fahrenheit') hasil = (suhu * 9/5) + 32;
+                else if (ke === 'Reamur') hasil = suhu * 4/5;
+            } else if (dari === 'Fahrenheit') {
+                if (ke === 'Celsius') hasil = (suhu - 32) * 5/9;
+                else if (ke === 'Reamur') hasil = (suhu - 32) * 4/9;
+            } else if (dari === 'Reamur') {
+                if (ke === 'Celsius') hasil = suhu * 5/4;
+                else if (ke === 'Fahrenheit') hasil = (suhu * 9/4) + 32;
+            }
+            
+            // Menampilkan hasil
+            document.getElementById('hasil').innerHTML = `Hasil: ${hasil.toFixed(2)} &deg;${ke}`;
+        }
+    </script>
+</body>
+</html>

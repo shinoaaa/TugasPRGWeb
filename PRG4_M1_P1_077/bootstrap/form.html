@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir - Tugas HTML</title>
+    <!-- Menggunakan Bootstrap 5 dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Tugas HTML Framework</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="form.html">Formulir</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tabel.html">Data Tabel</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Form -->
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h4 class="card-title mb-0">Formulir Pendaftaran</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="tabel.html" method="GET">
+                            
+                            <!-- 1. Textbox -->
+                            <div class="mb-3">
+                                <label for="namaLengkap" class="form-label fw-bold">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="namaLengkap" name="nama" placeholder="Masukkan nama lengkap Anda" required>
+                            </div>
+
+                            <!-- 2. Textbox (Email) -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold">Alamat Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                            </div>
+
+                            <!-- 3. Dropdown List -->
+                            <div class="mb-3">
+                                <label for="programStudi" class="form-label fw-bold">Program Studi</label>
+                                <select class="form-select" id="programStudi" name="prodi" required>
+                                    <option value="" disabled selected>-- Pilih Program Studi --</option>
+                                    <option value="mi">Manajemen Informatika</option>
+                                    <option value="te">Teknik Elektronika</option>
+                                    <option value="tm">Teknik Mesin</option>
+                                    <option value="to">Teknik Otomotif</option>
+                                </select>
+                            </div>
+
+                            <!-- 4. Radio Button -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold d-block">Jenis Kelamin</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="radioPria" value="pria" required>
+                                    <label class="form-check-label" for="radioPria">Pria</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jenisKelamin" id="radioWanita" value="wanita">
+                                    <label class="form-check-label" for="radioWanita">Wanita</label>
+                                </div>
+                            </div>
+
+                            <!-- 5. Checkbox -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold d-block">Minat & Bakat</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="pemrograman" id="checkPemrograman" name="minat">
+                                    <label class="form-check-label" for="checkPemrograman">Pemrograman</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="desain" id="checkDesain" name="minat">
+                                    <label class="form-check-label" for="checkDesain">Desain Grafis</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="jaringan" id="checkJaringan" name="minat">
+                                    <label class="form-check-label" for="checkJaringan">Jaringan Komputer</label>
+                                </div>
+                            </div>
+
+                            <!-- 6. Text Area -->
+                            <div class="mb-4">
+                                <label for="alamat" class="form-label fw-bold">Alamat Lengkap</label>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="4" placeholder="Tuliskan alamat lengkap domisili Anda" required></textarea>
+                            </div>
+
+                            <hr>
+
+                            <!-- Tombol Aksi -->
+                            <div class="d-flex justify-content-between">
+                                <button type="reset" class="btn btn-secondary px-4">Reset</button>
+                                <button type="submit" class="btn btn-success px-4">Kirim Data</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-3 bg-white text-center border-top">
+        <div class="container">
+            <span class="text-muted">© 2023 Tugas Framework - Politeknik Astra</span>
+        </div>
+    </footer>
+
+    <!-- Script Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

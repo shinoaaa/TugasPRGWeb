@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Program Pencetak Angka</title>
+</head>
+<body>
+    <h1>Program Pencetak Angka - T2_077</h1>
+    <p>Mencetak angka 1-100 dengan aturan:</p>
+    <ul>
+        <li>Kelipatan 3: MI</li>
+        <li>Kelipatan 5: 2A</li>
+        <li>Kelipatan 3 dan 5: MI2A</li>
+    </ul>
+    <button onclick="cetakAngka()">Jalankan Program</button>
+    <div id="hasil" style="margin-top: 20px; font-family: monospace; word-wrap: break-word;"></div>
+
+    <script>
+        function cetakAngka() {
+            let hasil = [];
+            for (let i = 1; i <= 100; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    hasil.push("MI2A");
+                } else if (i % 3 === 0) {
+                    hasil.push("MI");
+                } else if (i % 5 === 0) {
+                    hasil.push("2A");
+                } else {
+                    hasil.push(i);
+                }
+            }
+            document.getElementById('hasil').innerHTML = hasil.join(', ');
+        }
+    </script>
+</body>
+</html>

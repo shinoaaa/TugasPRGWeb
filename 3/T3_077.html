@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menghitung Nilai Array</title>
+</head>
+<body>
+    <h1>Hitung Nilai Min, Max, Rata-rata - T3_077</h1>
+    <label for="inputArray">Masukkan array (pisahkan dengan koma): </label>
+    <input type="text" id="inputArray" placeholder="Contoh: 10, 20, 30, 40, 50">
+    <button onclick="prosesArray()">Hitung</button>
+    <div id="hasil" style="margin-top: 20px;"></div>
+
+    <script>
+        // Fungsi untuk menghitung nilai minimum, maksimum, dan rata-rata
+        function hitungStatistik(arr) {
+            let min = Math.min(...arr);
+            let max = Math.max(...arr);
+            let avg = arr.reduce((a, b) => a + b, 0) / arr.length;
+            
+            return {
+                minimum: min,
+                maksimum: max,
+                rataRata: avg
+            };
+        }
+
+        // Fungsi yang dipanggil saat tombol diklik
+        function prosesArray() {
+            const input = document.getElementById('inputArray').value;
+            if (!input) {
+                alert("Masukkan data!");
+                return;
+            }
+            
+            // Konversi input teks menjadi array angka
+            const arr = input.split(',').map(num => parseFloat(num.trim()));
+            
+            // Validasi input
+            if (arr.some(isNaN)) {
+                alert("Data harus berupa angka!");
+                return;
+            }
+
+            // Memanggil fungsi hitungStatistik
+            const hasil = hitungStatistik(arr);
+            
+            // Menampilkan hasil
+            document.getElementById('hasil').innerHTML = `
+                <ul>
+                    <li>Nilai Minimum: ${hasil.minimum}</li>
+                    <li>Nilai Maksimum: ${hasil.maksimum}</li>
+                    <li>Nilai Rata-rata: ${hasil.rataRata}</li>
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>

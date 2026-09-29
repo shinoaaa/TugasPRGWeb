@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Tugas HTML</title>
+    <!-- Menggunakan Bootstrap 5 dari CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Tugas HTML Framework</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="form.html">Formulir</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tabel.html">Data Tabel</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <div class="container mt-5">
+        <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border">
+            <div class="container-fluid py-5 text-center">
+                <h1 class="display-5 fw-bold text-primary">Selamat Datang</h1>
+                <p class="col-md-8 fs-4 mx-auto mt-3">
+                    Ini adalah halaman utama dari tugas pembuatan web. Website ini terdiri dari tiga halaman utama yang saling terhubung menggunakan template Bootstrap 5.
+                </p>
+                <div class="mt-4">
+                    <a href="form.html" class="btn btn-primary btn-lg px-4 me-2">Isi Formulir</a>
+                    <a href="tabel.html" class="btn btn-outline-secondary btn-lg px-4">Lihat Data</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row align-items-md-stretch text-center">
+            <div class="col-md-6 mb-3">
+                <div class="h-100 p-5 text-bg-dark rounded-3">
+                    <h2>Fitur Formulir</h2>
+                    <p>Formulir yang mencakup berbagai tipe inputan seperti Textbox, Textarea, Radio Button, Checkbox, dan Dropdown List.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>Fitur Tabel</h2>
+                    <p>Menampilkan data yang disajikan dalam bentuk tabel responsif menggunakan Bootstrap yang rapi dan terstruktur.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 py-3 bg-light text-center border-top">
+        <div class="container">
+            <span class="text-muted">© 2023 Tugas Framework - Politeknik Astra</span>
+        </div>
+    </footer>
+
+    <!-- Script Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
