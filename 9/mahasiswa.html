@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Data Mahasiswa</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+    <!-- Tampilan template (sudah termasuk Bootstrap) -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        .form-container{
+            display: none;
+        }
+    </style>
+</head>
+<body id="page-top">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="peminjaman.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Nabil <sup>GAMING</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Master Data
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="asset.html">
+                    <i class="fas fa-fw fa-toolbox"></i>
+                    <span>Master Data Asset</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="mahasiswa.html">
+                    <i class="fas fa-fw fa-user-graduate"></i>
+                    <span>Master Data Mahasiswa</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Transaksi
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="peminjaman.html">
+                    <i class="fas fa-fw fa-hand-holding"></i>
+                    <span>Transaksi Peminjaman</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <!-- Topbar (tombol menu buat layar kecil) -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <span class="font-weight-bold text-gray-800">Master Data Mahasiswa</span>
+                </nav>
+
+                <div class="container-fluid">
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Data Mahasiswa</h1>
+                        <button class="btn btn-success px-4" id="addStudent">
+                            <i class="fas fa-plus fa-sm mr-1"></i> Tambah Mahasiswa
+                        </button>
+                    </div>
+
+                    <!-- Form tambah / edit -->
+                    <div class="card shadow mb-4 form-container" id="form-container">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary form-title">Form Tambah Mahasiswa</h6>
+                        </div>
+                        <div class="card-body">
+                            <form id="addStudentForm">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="NIM">NIM</label>
+                                        <input type="number" id="NIM" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="namaMahasiswa">Nama Mahasiswa</label>
+                                        <input type="text" id="namaMahasiswa" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="jurusan">Jurusan</label>
+                                        <select id="jurusan" class="form-control" required>
+                                            <option value="TRPL">TRPL</option>
+                                            <option value="Informatika">Informatika</option>
+                                            <option value="Robotika">Robotika</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="angkatan">Angkatan</label>
+                                        <input type="number" id="angkatan" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="email">Akun email</label>
+                                        <input type="text" id="email" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="noTelp">Nomor Telepon</label>
+                                        <input type="text" id="noTelp" class="form-control" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary" id="cancelSub">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Tabel -->
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>NIM</th>
+                                            <th>Nama Mahasiswa</th>
+                                            <th>Jurusan</th>
+                                            <th>Angkatan</th>
+                                            <th>Email</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="asset-data">
+                                        <tr>
+                                            <td colspan="8">
+                                                Bntr lagi ngambil data...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Nabil Gaming &copy; 2026</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script>
+        let isEdit = 0;
+        const formStudent = document.getElementById('form-container');
+        const formTitle = formStudent.querySelector('.form-title');
+        const studentForm = document.getElementById('addStudent');
+        const submitStudent = document.getElementById('addStudentForm');
+        const URL = 'https://api.melangkah.my.id';
+        let tabelMahasiswa = document.getElementById('asset-data');
+
+        document.getElementById('cancelSub').addEventListener('click',()=>{
+            formStudent.style.display = 'none'
+            isEdit = 0;
+        })
+
+        async function getMahasiswa() {
+            try {
+                const response = await fetch(`${URL}/mahasiswa/read.php`);
+                if(!response.ok) throw new Error(`Error pak: ${response.status}`)
+                let mahasiswa = await response.json()
+                console.log(mahasiswa);
+                tabelMahasiswa.innerHTML = ' '
+
+                let number = 1
+                mahasiswa.forEach(data => {
+                    let mahasiswa = `
+                        <tr>
+                            <td>${number++}</td>
+                            <td>${data.nim}</td>
+                            <td>${data.nama}</td>
+                            <td>${data.jurusan}</td>
+                            <td>${data.angkatan}</td>
+                            <td>${data.email}</td>
+                            <td>${data.telepon}</td>
+                            <td class="text-nowrap">
+                                <button class='btn btn-warning btn-sm' onclick="editStudent(${data.id})">Edit</button>
+                                <button class='btn btn-danger btn-sm'  onclick="deleteStudent(${data.id})">Hapus</button>
+                            </td>
+                        </tr>
+                    `
+                    tabelMahasiswa.innerHTML += mahasiswa
+                });
+            } catch (error) {
+                console.error('Error katanya gini: ', error);
+                tabelMahasiswa.innerHTML = '<tr><td colspan="8">Error, liat console sana!</td></tr>'
+            }
+
+        }
+        getMahasiswa();
+
+        studentForm.addEventListener('click', ()=>{
+            isEdit = 0;
+            formTitle.textContent = 'Form Tambah Mahasiswa';
+            formStudent.style.display = 'block'
+            formStudent.scrollIntoView({ behavior: 'smooth' });
+
+            submitStudent.reset();
+        })
+
+        submitStudent.addEventListener('submit', subStudent);
+
+        async function subStudent(e) {
+            e.preventDefault();
+
+            const namaMahasiswa = document.getElementById('namaMahasiswa').value
+            const NIM = document.getElementById('NIM').value
+            const jurusan = document.getElementById('jurusan').value
+            const angkatan = document.getElementById('angkatan').value
+            const email = document.getElementById('email').value
+            const noTelp = document.getElementById('noTelp').value
+
+            const dataMahasiswa = {
+                nim: NIM,
+                nama: namaMahasiswa,
+                jurusan: jurusan,
+                angkatan: angkatan,
+                email: email,
+                telepon: noTelp
+            }
+
+            console.log(dataMahasiswa);
+            try {
+                if(isEdit){
+                    dataMahasiswa.id = isEdit
+                    const response = await fetch(`${URL}/mahasiswa/update.php`,{
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        method: "POST",
+                        body: JSON.stringify(dataMahasiswa)
+                    })
+                    if(!response.ok) throw new Error(`error, katanya: ${response.status}`)
+
+                    alert("Berhasil ngubah data");
+                    isEdit = 0;
+                    getMahasiswa();
+                    formStudent.style.display = 'none';
+                }else{
+                    const response = await fetch(`${URL}/mahasiswa/create.php`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(dataMahasiswa)
+                    });
+                    if(!response.ok) throw new Error(`error, katanya: ${response.status}`)
+
+                    alert("Data berhasil ditambahkan");
+                    getMahasiswa();
+                    formStudent.style.display = 'none';
+                }
+            } catch (error) {
+                console.error("error pakcik: ", error);
+                alert("gak bisa, coba lihat console")
+            }
+        }
+
+        async function editStudent(id){
+            try {
+                const response = await fetch(`${URL}/mahasiswa/detail.php?id=${id}`);
+                if(!response.ok) throw new Error(`error, katanya: ${response.status}`)
+
+                let detailMahasiswa = await response.json();
+
+                if(!detailMahasiswa){
+                    alert("mahasiswa gada")
+                    return
+                }
+
+                console.log(detailMahasiswa)
+                formTitle.textContent = 'Form Edit Mahasiswa';
+                formStudent.style.display = 'block';
+                formStudent.scrollIntoView({ behavior: 'smooth' });
+
+                document.getElementById('namaMahasiswa').value = detailMahasiswa.nama
+                document.getElementById('NIM').value = detailMahasiswa.nim
+                document.getElementById('jurusan').value = detailMahasiswa.jurusan
+                document.getElementById('angkatan').value = detailMahasiswa.angkatan
+                document.getElementById('email').value = detailMahasiswa.email
+                document.getElementById('noTelp').value = detailMahasiswa.telepon
+
+                isEdit = id;
+                console.log(id);
+
+            } catch (error) {
+                console.error("error pakcik: ", error);
+                alert("gak bisa, coba lihat console")
+            }
+        }
+
+        async function deleteStudent(id) {
+            console.log(id);
+            if(!confirm("Yakin mau hapus data ini?")) return;
+
+            try {
+                const response = await fetch(`${URL}/mahasiswa/delete.php?id=${id}`,{
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                if(!response.ok) throw new Error(`error, katanya: ${response.status}`)
+
+                alert("Data berhasil dihapus");
+                getMahasiswa();
+            } catch (error) {
+                console.error("error pakcik: ", error);
+            alert("gak bisa, coba lihat console")
+            }
+
+
+        }
+    </script>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
