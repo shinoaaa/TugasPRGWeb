@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Data Asset</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+    <!-- Tampilan template (sudah termasuk Bootstrap) -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        .form-container{
+            display: none;
+        }
+
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body id="page-top">
+    <div class="card" style="display: none; position: absolute; min-height: 220px; min-width: 190px; transform: translateX(620px) translateY(300px); z-index: 999; padding: 15px;" id="hapusUnit">
+        <h4>Hapus Unit PS?</h4>
+        <p id="contentHapus"></p>
+    </div>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="peminjaman.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Rental ps <br> admin</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Kelola Data
+            </div>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="asset.html">
+                    <i class="fas fa-fw fa-tv"></i>
+                    <span>Master Unit PS</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="peminjaman.html">
+                    <i class="fas fa-fw fa-paperclip"></i>
+                    <span>Transaksi Peminjaman</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                <!-- Topbar (tombol menu buat layar kecil) -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <span class="font-weight-bold text-gray-800">Manajemen Master Unit PlayStation</span>
+                </nav>
+
+                <div class="container-fluid">
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Data Asset</h1>
+                        <button class="btn btn-success px-4" id="addAsset">
+                            <i class="fas fa-plus fa-sm mr-1"></i> Tambah Asset
+                        </button>
+                    </div>
+
+                    <!-- Form tambah / edit -->
+                    <div class="card shadow mb-4 form-container" id="form-container">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary form-title">Form Tambah Asset</h6>
+                        </div>
+                        <div class="card-body">
+                            <form id="addProductForm">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="namaUnit">Nama Unit <span class="red">*</span></label>
+                                        <input type="text" id="namaUnit" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="tipeUnit">Tipe Console <span class="red">*</span></label>
+                                        <select id="tipeUnit" class="form-control" required>
+                                            <option value="PS5">PS5</option>
+                                            <option value="PS4">PS4</option>
+                                            <option value="PS3">PS3</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="hargaSewa">Harga Sewa / Jam <span class="red">*</span></label>
+                                        <input type="number" id="hargaSewa" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="statusUnit">Status Awal <span class="red">*</span></label>
+                                        <select id="statusUnit" class="form-control" required>
+                                            <option value="Tersedia">Tersedia</option>
+                                            <option value="Disewa">Disewa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-secondary">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Tabel -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary  fa fa-list">Daftar Unit PS</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Unit</th>
+                                            <th>Tipe Konsol</th>
+                                            <th>Harga / Jam</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="asset-data">
+                                        <tr>
+                                            <td colspan="8">
+                                                Bntr lagi ngambil data...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Nabil Gaming &copy; 2026</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script>
+        const URL = 'https://api.melangkah.my.id';
+        const formAsset = document.getElementById('form-container');
+        const formTitle = formAsset.querySelector('.form-title');
+        const addProductForm = document.getElementById('addProductForm');
+        const addButton = document.getElementById('addAsset');
+        const cancelButton = formAsset.querySelector('.btn.btn-secondary')
+        const hapusUnit = document.getElementById('hapusUnit')
+        let isEdit = 0
+
+        async function getAsset(){
+
+            try {
+                const response = await fetch(`${URL}/unit/read.php`);
+                if(!response.ok) throw new Error(`Error: ${response.status}`)
+
+                let asset = await response.json();
+                let data = asset.data
+                console.log(data);
+
+                let table_asset = document.getElementById('asset-data');
+                table_asset.innerHTML = ' '
+
+                data.forEach(element => {
+                    let baris = `
+                        <tr>
+                            <td><b>#${element.id_unit}</b></td>
+                            <td><b>${element.nama_unit}</b></td>
+                            <td><b>${element.tipe_ps}</b></td>
+                            <td style='color:green'><b>${element.harga_per_jam}</b></td>
+                            <td><b>${element.status}</b></td>
+                            <td class="text-nowrap" >
+                                <button class="btn btn-warning btn-sm fa fa-edit" onclick="editAsset(${element.id_unit})"></button>
+                                <button class="btn btn-danger btn-sm fa fa-trash-alt" id="btnHapus" onclick="deleteAsset(${element.id_unit})"></button>
+                            </td>
+                        </tr>
+                    `
+
+                    table_asset.innerHTML += baris;
+                });
+
+            } catch (error) {
+                console.error("Gagal mengambil data produk:", error);
+                document.getElementById("asset-data").innerHTML = `<tr><td colspan="8">Gagal ambil data, cek console</td></tr>`
+            }
+        }
+
+        addButton.addEventListener('click', ()=>{
+            isEdit = 0
+            formTitle.textContent = 'Form Tambah Asset'
+            formAsset.style.display = 'block'
+            formAsset.scrollIntoView({ behavior: 'smooth' })
+            addProductForm.reset()
+        })
+
+        cancelButton.addEventListener('click', ()=>{
+            formAsset.style.display = 'none'
+            isEdit = 0
+        })
+
+        addProductForm.addEventListener('submit', submitAsset);
+
+        async function submitAsset(e){
+            e.preventDefault();
+
+            const namaUnit = document.getElementById('namaUnit').value
+            const tipeUnit = document.getElementById('tipeUnit').value
+            const hargaSewa =  document.getElementById('hargaSewa').value
+            const statusUnit = document.getElementById('statusUnit').value
+
+            const isiForm = {
+                nama_unit:  namaUnit,
+                tipe_ps: tipeUnit,
+                harga_per_jam: hargaSewa,
+                status: statusUnit
+            }
+
+            try {
+                if(isEdit){
+                    isiForm.id_unit = isEdit;
+                    const response = await fetch(`${URL}/unit/update.php`,{
+                        method: "PUT",
+                        headers: {
+                            "Content-Type" : "application/json"
+                        },
+                        body: JSON.stringify(isiForm)
+                    }
+                )
+                if(!response.ok) throw new Error(`Http error: ${response.status}`);
+                alert("Data Berhasil Diedit");
+                formAsset.style.display = 'none'
+                isEdit = 0;
+
+                }else{
+
+                    const response = await fetch(`${URL}/unit/create.php`,{
+                        method: "POST",
+                        headers: {
+                            "Content-Type" : "application/json"
+                        },
+                        body: JSON.stringify(isiForm)
+                    }
+                )
+                if(!response.ok) throw new Error(`Http error: ${response.status}`);
+
+                alert("Data Berhasil Disimpan");
+                formAsset.style.display = 'none'
+            }
+            getAsset();
+            } catch (error) {
+                console.error("error mas:", error)
+                alert("error, cek console cepat")
+            }
+        }
+
+        async function editAsset(id) {
+            try {
+                const response = await fetch(`${URL}/unit/detail.php?id=${id}`)
+                if(!response.ok) throw new Error(`Error pakcik: ${response.status}`)
+
+                let product = await response.json()
+                let data = product.data
+
+                if(!data){
+                    alert("gada datanya rek")
+                    return;
+                }
+
+                formTitle.textContent = 'Form Edit Asset'
+                formAsset.style.display = 'block'
+                formAsset.scrollIntoView({ behavior: 'smooth' })
+
+                document.getElementById('namaUnit').value = data.nama_unit
+                document.getElementById('tipeUnit').value = data.tipe_ps
+                document.getElementById('hargaSewa').value = data.harga_per_jam
+                document.getElementById('statusUnit').value = data.status
+
+                isEdit = id
+
+            } catch (error) {
+                console.error("Katanya gini errornya", error)
+            }
+
+
+        }
+
+        async function deleteAsset(id) {
+            // hapusUnit.style.display = 'block'
+            if(!confirm("Yakin mau hapus data ini?")) return;
+            const id_hapus = {
+                id_unit: id
+            }
+
+            try {
+                const response = await fetch(`${URL}/unit/delete.php`,{
+                    method : "DELETE",
+                    body: JSON.stringify(id_hapus)
+                })
+                if(!response.ok) throw new Error(`Error pakcik: ${response.status}`)
+
+                alert("data berhasil dihapus")
+                getAsset();
+
+            } catch (error) {
+                console.error("Katanya gini errornya", error)
+            }
+        }
+
+        
+
+        getAsset();
+    </script>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
