@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #f5f6fa;
+        }
+
+        .sidebar {
+            min-height: 100vh;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+        }
+
+        .chart-container {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="col-md-2 bg-dark text-white  p-3">
+
+            <h4 class="mb-4">
+                Admin Dashboard
+            </h4>
+
+            <ul class="nav nav-pills flex-column gap-2">
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="bi bi-house"></i>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-people"></i>
+                        Users
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-cart"></i>
+                        Orders
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-box"></i>
+                        Products
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="col-md-10 p-4">
+
+            <!-- HEADER -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+                    <h2>Dashboard</h2>
+                    <p class="text-muted mb-0">
+                        Welcome back, Admin
+                    </p>
+                </div>
+
+                <button class="btn btn-primary">
+                    <i class="bi bi-plus"></i>
+                    Add Data
+                </button>
+
+            </div>
+
+
+            <!-- ================= KPI CARDS ================= -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-3">
+                    <div class="card p-3">
+
+                        <div class="d-flex justify-content-between">
+
+                            <div>
+                                <p class="text-muted mb-1">
+                                    Total Users
+                                </p>
+
+                                <h3>1,225</h3>
+                            </div>
+
+                            <div class="fs-1 text-primary">
+                                <i class="bi bi-people"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="card p-3">
+
+                        <div class="d-flex justify-content-between">
+
+                            <div>
+                                <p class="text-muted mb-1">
+                                    New Orders
+                                </p>
+
+                                <h3>257</h3>
+                            </div>
+
+                            <div class="fs-1 text-success">
+                                <i class="bi bi-cart"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="card p-3">
+
+                        <div class="d-flex justify-content-between">
+
+                            <div>
+                                <p class="text-muted mb-1">
+                                    Revenue
+                                </p>
+
+                                <h3>$8,420</h3>
+                            </div>
+
+                            <div class="fs-1 text-warning">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="card p-3">
+
+                        <div class="d-flex justify-content-between">
+
+                            <div>
+                                <p class="text-muted mb-1">
+                                    Tickets
+                                </p>
+
+                                <h3>125</h3>
+                            </div>
+
+                            <div class="fs-1 text-danger">
+                                <i class="bi bi-ticket"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ================= LINE CHART ================= -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-8">
+
+                    <div class="card p-3">
+
+                        <h5>Sales Overview</h5>
+
+                        <div class="chart-container">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= DONUT ================= -->
+                <div class="col-md-4">
+
+                    <div class="card p-3">
+
+                        <h5>Browser Usage</h5>
+
+                        <div class="chart-container">
+                            <canvas id="linecuy"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= BAR + ACTIVITY ================= -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-7">
+
+                    <div class="card p-3">
+
+                        <h5>Monthly Orders</h5>
+
+                        <div class="chart-container">
+                            <canvas id="orderChart"></canvas>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-5">
+
+                    <div class="card p-3">
+
+                        <h5>Recent Activity</h5>
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                John created an order
+                                <span class="badge bg-success float-end">
+                                    New
+                                </span>
+                            </li>
+
+                            <li class="list-group-item">
+                                Sarah updated profile
+                                <span class="badge bg-info float-end">
+                                    Update
+                                </span>
+                            </li>
+
+                            <li class="list-group-item">
+                                Mike cancelled order
+                                <span class="badge bg-danger float-end">
+                                    Cancelled
+                                </span>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= TABLE ================= -->
+            <div class="card p-3">
+
+                <h5 class="mb-3">
+                    Recent Orders
+                </h5>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>#001</td>
+                                <td>John Doe</td>
+                                <td>Keyboard</td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td>$120</td>
+                            </tr>
+
+                            <tr>
+                                <td>#002</td>
+                                <td>Sarah</td>
+                                <td>Mouse</td>
+                                <td>
+                                    <span class="badge bg-warning">
+                                        Pending
+                                    </span>
+                                </td>
+                                <td>$80</td>
+                            </tr>
+
+                            <tr>
+                                <td>#003</td>
+                                <td>Mike</td>
+                                <td>Monitor</td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        Cancelled
+                                    </span>
+                                </td>
+                                <td>$250</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <div class="row mt-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h5 class="mb-3">Order Summary</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Ani</td>
+              <td>Ikan</td>
+              <td>20</td>
+              <td><span class="badge bg-success">Completed</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Budi</td>
+              <td>Sapi</td>
+              <td>12</td>
+              <td><span class="badge bg-warning text-dark">Pending</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Citra</td>
+              <td>Unta</td>
+              <td>5</td>
+              <td><span class="badge bg-danger">Cancelled</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+    
+</div>
+
+
+<!-- ================= CHART JS ================= -->
+
+<script>
+
+    new Chart(
+        document.getElementById('linecuy'),
+        {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Ikan',
+                    'Sapi',
+                    'Unta',
+                    'Kerbau',
+                    'babi'
+                ],
+                datasets: [{
+                    label: 'hewan',
+                    data:[
+                        1800,120,40,20,12
+                    ]
+                }]
+            }
+        }
+    )
+
+
+    // LINE / AREA CHART
+    const salesChart = new Chart(
+        document.getElementById('salesChart'),
+        {
+            type: 'line',
+
+            data: {
+                labels: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun',
+                    'Jul',
+                ],
+
+                datasets: [{
+                    label: 'Sales',
+
+                    data: [
+                        120,
+                        190,
+                        150,
+                        250,
+                        220,
+                        300,
+                        350
+                    ],
+
+                    fill: true,
+
+                    tension: 0.4
+                }]
+            }
+        }
+    );
+
+
+    // BAR CHART
+    const orderChart = new Chart(
+        document.getElementById('orderChart'),
+        {
+            type: 'bar',
+
+            data: {
+                labels: [
+                    'Jan',
+                    'Feb',
+                    'Mar',
+                    'Apr',
+                    'May',
+                    'Jun'
+                ],
+
+                datasets: [{
+                    label: 'Orders',
+
+                    data: [
+                        30,
+                        45,
+                        35,
+                        60,
+                        50,
+                        80
+                    ]
+                }]
+            }
+        }
+    );
+
+</script>
+
+
+</body>
+</html>
